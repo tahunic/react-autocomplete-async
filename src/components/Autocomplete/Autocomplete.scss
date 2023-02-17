@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: #666;
+    outline: none;
+  }
+}
+
+.suggestion {
+  &-container {
+    border: 1px solid #ccc;
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  &-item {
+    appearance: none;
+    background-color: #fff;
+    padding: 0.5rem;
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    transition: border-color 0.2s ease;
+    cursor: pointer;
+  }
+}
+
+.autocomplete {
+  display: flex;
+  flex-direction: column;
+}
