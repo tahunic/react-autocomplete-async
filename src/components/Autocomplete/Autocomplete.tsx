@@ -3,7 +3,7 @@ import { Suggestion } from '@/types/Suggestion';
 import { useDebounce } from '@/hooks/useDebounce';
 import './Autocomplete.scss';
 
-type AutocompleteProps = HTMLProps<HTMLInputElement> & {
+export type AutocompleteProps = HTMLProps<HTMLInputElement> & {
   onChooseSuggestion: (suggestion: Suggestion) => void;
   searchSuggestions: (term: string) => Promise<Suggestion[]>;
   debounceTime?: number;
