@@ -38,11 +38,11 @@ describe('Autocomplete component', () => {
     fireEvent.change(input, { target: { value: 'house' } });
     await waitFor(() => {
       expect(searchSuggestions).toHaveBeenCalledWith('house')
-      expect(screen.getByText('houseboat')).toBeDefined();
-      expect(screen.getByText('housekeeper')).toBeDefined();
-      expect(screen.getByText('houseplant')).toBeDefined();
-      expect(screen.queryByText('apple')).toBeNull();
-      expect(screen.queryByText('orange')).toBeNull();
+      expect(screen.getByText(/boat/)).toBeDefined();
+      expect(screen.getByText(/keeper/)).toBeDefined();
+      expect(screen.getByText(/plant/)).toBeDefined();
+      expect(screen.queryByText(/apple/)).toBeNull();
+      expect(screen.queryByText(/orange/)).toBeNull();
     });
   });
 
@@ -51,7 +51,7 @@ describe('Autocomplete component', () => {
     fireEvent.change(input, { target: { value: 'house' } });
 
     await waitFor(() => {
-      const suggestion = screen.getByText('houseboat');
+      const suggestion = screen.getByText(/boat/);
       fireEvent.click(suggestion);
       expect(onChooseSuggestion).toHaveBeenCalledWith(suggestions.find(s => s.word === 'houseboat'));
       expect(input.getAttribute('value')).to.eq('houseboat');
