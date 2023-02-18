@@ -2,6 +2,7 @@ import React, { HTMLProps, useEffect, useState } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { useDebounce } from '@/hooks/useDebounce';
 import './Autocomplete.scss';
+import { SuggestionList } from '@/components/SuggestionList';
 
 export type AutocompleteProps = HTMLProps<HTMLInputElement> & {
   onChooseSuggestion: (suggestion: Suggestion) => void;
@@ -18,9 +19,9 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
 }, ref) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(defaultValue ?? '');
+  const [term, setTerm] = useState<string>(defaultValue ?? '');
 
-  const debouncedValue = useDebounce(value, debounceTime);
+  const debouncedValue = useDebounce(term, debounceTime);
 
   useEffect(() => {
     const getSuggestions = async () => {
@@ -40,28 +41,20 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
     <div className="autocomplete" data-testid="autocomplete">
       <input
         ref={ref}
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        value={term}
+        onChange={e => setTerm(e.target.value)}
         onFocus={() => setShowDropdown(true)}
         onBlur={() => setShowDropdown(false)}
         {...props}
       />
-      <div className={`suggestion-container ${showDropdown && suggestions.length > 0 ? 'open' : ''}`}>
-        {suggestions.map((suggestion: Suggestion) => (
-          <div
-            key={suggestion.word}
-            className="suggestion-item"
-            onClick={() => {
-              setValue(suggestion.word);
-              onChooseSuggestion(suggestion);
-              setShowDropdown(false);
-            }}
-            onMouseDown={e => e.preventDefault()}
-          >
-            {suggestion.word}
-          </div>
-        ))}
-      </div>
+      <SuggestionList
+        suggestions={suggestions}
+        term={term}
+        setTerm={setTerm}
+        showDropdown={showDropdown}
+        setShowDropdown={setShowDropdown}
+        onChooseSuggestion={onChooseSuggestion}
+      />
     </div>
   );
 });
