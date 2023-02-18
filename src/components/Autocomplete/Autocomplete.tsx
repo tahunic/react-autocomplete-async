@@ -37,7 +37,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
   }, [debouncedValue]);
 
   return (
-    <div className="autocomplete">
+    <div className="autocomplete" data-testid="autocomplete">
       <input
         ref={ref}
         value={value}
