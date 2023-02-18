@@ -13,12 +13,17 @@ const App = () => {
   }
 
   return (
-    <Autocomplete
-      searchSuggestions={searchSuggestions}
-      onChooseSuggestion={(suggestion: Suggestion) => setForm({ ...form, movie: suggestion.word })}
-      debounceTime={300}
-      placeholder="Search for anything"
-    />
+    <>
+      <h1>React Autocomplete demo</h1>
+      <div style={{ maxWidth: '300px' }}>
+        <Autocomplete
+          searchSuggestions={searchSuggestions}
+          onChooseSuggestion={(suggestion: Suggestion) => setForm({ ...form, movie: suggestion.word })}
+          debounceTime={300}
+          placeholder="Search for anything"
+        />
+      </div>
+    </>
   );
 }
 

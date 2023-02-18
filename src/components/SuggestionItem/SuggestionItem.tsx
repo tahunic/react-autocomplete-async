@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { WordHighlight } from '@/components/WordHighlight';
 
@@ -24,6 +24,7 @@ export const SuggestionItem: FC<SuggestionProps> = ({
         setTerm(suggestion.word);
         onChooseSuggestion(suggestion);
         setShowDropdown(false);
+        document.getElementById('autocomplete-input')?.blur();
       }}
       onMouseDown={e => e.preventDefault()}
     >

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { SuggestionItem } from '@/components/SuggestionItem';
 

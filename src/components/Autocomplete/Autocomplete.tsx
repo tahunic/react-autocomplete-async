@@ -1,4 +1,4 @@
-import React, { HTMLProps, useEffect, useState } from 'react';
+import { forwardRef, HTMLProps, useEffect, useRef, useState } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { useDebounce } from '@/hooks/useDebounce';
 import './Autocomplete.scss';
@@ -10,7 +10,7 @@ export type AutocompleteProps = HTMLProps<HTMLInputElement> & {
   debounceTime?: number;
   defaultValue?: string;
 }
-export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps>(({
+export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(({
   onChooseSuggestion,
   searchSuggestions,
   debounceTime = 0,
@@ -40,6 +40,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
   return (
     <div className="autocomplete" data-testid="autocomplete">
       <input
+        id="autocomplete-input"
         ref={ref}
         value={term}
         onChange={e => setTerm(e.target.value)}
