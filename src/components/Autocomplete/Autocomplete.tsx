@@ -1,4 +1,4 @@
-import { forwardRef, HTMLProps, useEffect, useRef, useState } from 'react';
+import { forwardRef, HTMLProps, useEffect, useState } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { useDebounce } from '@/hooks/useDebounce';
 import './Autocomplete.scss';
