@@ -26,6 +26,7 @@ export const SuggestionItem: FC<SuggestionProps> = ({
         setShowDropdown(false);
         document.getElementById('autocomplete-input')?.blur();
       }}
+      // Prevent the input blur event as it causes the dropdown to close before the suggestion click handler
       onMouseDown={e => e.preventDefault()}
     >
       <WordHighlight
