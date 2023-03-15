@@ -1,0 +1,9 @@
+.suggestion-container {
+  max-height: 345px;
+  overflow-y: auto;
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+}

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Suggestion } from '@/types/Suggestion';
 import { SuggestionItem } from '@/components/SuggestionItem';
+import './SuggestionList.scss';
 
 type SuggestionListProps = {
   suggestions: Suggestion[];
