@@ -20,6 +20,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(({
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [term, setTerm] = useState<string>(defaultValue ?? '');
+  const [loading, setLoading] = useState(false);
 
   const debouncedValue = useDebounce(term, debounceTime);
 
@@ -30,8 +31,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(({
         return;
       }
 
-      const data = await searchSuggestions(debouncedValue);
-      setSuggestions(data);
+      try {
+        const data = await searchSuggestions(debouncedValue);
+        setSuggestions(data);
+      } catch (e) {
+        console.error('Error loading suggestions', e);
+      } finally {
+        setLoading(false);
+      }
     }
 
     getSuggestions();
@@ -43,13 +50,17 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(({
         id="autocomplete-input"
         ref={ref}
         value={term}
-        onChange={e => setTerm(e.target.value)}
+        onChange={e => {
+          setTerm(e.target.value)
+          setLoading(e.target.value?.length > 0);
+        }}
         onFocus={() => setShowDropdown(true)}
         onBlur={() => setShowDropdown(false)}
         {...props}
       />
       <SuggestionList
         suggestions={suggestions}
+        loading={loading}
         term={term}
         setTerm={setTerm}
         showDropdown={showDropdown}
