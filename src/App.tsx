@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <>
-      <h1>React Autocomplete demo</h1>
+      <h1>React Autocomplete Async</h1>
       <div style={{ maxWidth: '300px' }}>
         <Autocomplete
           searchSuggestions={searchSuggestions}
