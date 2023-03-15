@@ -22,10 +22,10 @@ export const SuggestionList: FC<SuggestionListProps> = ({
   onChooseSuggestion,
 }) => {
   return (
-    <div className={`suggestion-container ${showDropdown ? 'open' : ''}`}>
-      {loading ? <div className="suggestion-item">Loading...</div> : (
+    <ul className={`suggestion-container ${showDropdown ? 'open' : ''}`}>
+      {loading ? <li className="suggestion-item">Loading...</li> : (
         <>
-          {term?.length > 0 && suggestions.length === 0 && <div className="suggestion-item">No matches for "{term}"</div>}
+          {term?.length > 0 && suggestions.length === 0 && <li className="suggestion-item">No matches for "{term}"</li>}
           {suggestions.map((suggestion: Suggestion) => (
             <SuggestionItem
               key={suggestion.word}
@@ -38,6 +38,6 @@ export const SuggestionList: FC<SuggestionListProps> = ({
           ))}
         </>
       )}
-    </div>
+    </ul>
   );
 };

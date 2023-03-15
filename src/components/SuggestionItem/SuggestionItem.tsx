@@ -17,7 +17,7 @@ export const SuggestionItem: FC<SuggestionProps> = ({
   setShowDropdown
 }) => {
   return (
-    <div
+    <li
       key={suggestion.word}
       className="suggestion-item"
       onClick={() => {
@@ -33,6 +33,6 @@ export const SuggestionItem: FC<SuggestionProps> = ({
         word={suggestion.word}
         term={term}
       />
-    </div>
+    </li>
   );
 };
